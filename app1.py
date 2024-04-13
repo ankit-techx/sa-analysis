@@ -27,7 +27,7 @@ def main():
     logo = "unnamed.png"
     st.image(logo, caption='', use_column_width=True)
 
-    filename = "Sheet  - Sheet1.csv"  # Path to CSV file
+    filename = "1_Year_output.csv"  # Path to CSV file
     try:
         df = load_data(filename)
     except Exception as e:
