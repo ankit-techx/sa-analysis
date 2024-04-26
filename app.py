@@ -19,11 +19,16 @@ def generate_pie_chart(df, product, time_period):
     top_10 = product_row.sum().nlargest(10)  # Get top 10 values
     labels = top_10.index
     sizes = top_10.values
+    
+    if sizes.sum() == 0:
+        st.error(f"No purchases found after {product} within the selected time period.")
+        return
+    
     fig, ax = plt.subplots()
     ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
     ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
     st.pyplot(fig)
-    st.markdown(f"**Pie Chart Description**: The pie chart displays the distribution of sales for the selected product (**{product}**) among the top 10 most bought products after it, within the **{time_period}** time period.")
+    st.markdown(f"**Pie Chart Description**: The pie chart displays the distribution of sales for the selected product (**{product}**) among the top most bought products after it, within the **{time_period}** time period.")
 
 # Main function
 def main():
